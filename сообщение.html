@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Соединение установлено</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            background-color: black;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            padding: 30px;
+            white-space: pre-wrap;
+        }
+        .cursor {
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div id="output"></div>
+    <span class="cursor" id="cursor">█</span>
+
+    <script>
+        const lines = [
+            "> Установка защищённого соединения...",
+            "> Обход межсетевых экранов...",
+            "> Расшифровка входящего трафика...",
+            "> Определение целевого IP-адреса...",
+            "> Цель обнаружена.",
+            "",
+            "> Доступ разрешён.",
+            "> Запуск полного сканирования уязвимостей...",
+            "> Статус: ЧЕЛОВЕК.",
+            "> Критических уязвимостей не обнаружено.",
+            "",
+            "[ОСТАНОВКА СИСТЕМЫ]",
+            "",
+            "> Просто короткое сообщение с другой стороны интернета:",
+            "> Ты не один.",
+            "> Чтобы ты сейчас ни переживал — это временно.",
+            "> И нет, тебя не нужно чинить.",
+            "",
+            "> Оставайся на связи.",
+            "> Передача завершена.",
+            "",
+            "> От кого: Дактилоскопия",
+            "> Кому: Тебе",
+            "",
+            "> Нажми любую клавишу или коснись экрана, чтобы закрыть."
+        ];
+
+        let i = 0;
+        let lineIndex = 0;
+        const outputDiv = document.getElementById('output');
+
+        function typeNextCharacter() {
+            if (lineIndex >= lines.length) return;
+            
+            let currentLine = lines[lineIndex];
+            
+            if (i < currentLine.length) {
+                outputDiv.innerHTML += currentLine.charAt(i);
+                i++;
+                setTimeout(typeNextCharacter, 30);
+            } else {
+                outputDiv.innerHTML += '\n';
+                i = 0;
+                lineIndex++;
+                setTimeout(typeNextCharacter, 100);
+            }
+        }
+
+        typeNextCharacter();
+
+        function finish() {
+            document.body.innerHTML = "<div style='color: #00ff00; font-family: monospace; font-size: 20px; text-align: center; margin-top: 50px;'>Соединение разорвано.<br>Помни: ты важен.<br>❤️</div>";
+        }
+
+        document.addEventListener('keydown', finish);
+        document.addEventListener('click', finish);
+    </script>
+</body>
+</html>
